@@ -1,5 +1,5 @@
 <template>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.43 22"><link xmlns="" type="text/css" rel="stylesheet" id="dark-mode-general-link"/><link xmlns="" type="text/css" rel="stylesheet" id="dark-mode-custom-link"/><style xmlns="" type="text/css" id="dark-mode-custom-style"/>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.43 22"><link type="text/css" rel="stylesheet" id="dark-mode-general-link"/><link type="text/css" rel="stylesheet" id="dark-mode-custom-link"/><style type="text/css" id="dark-mode-custom-style"/>
   <path d="M21.26 16h-1.67A3.64 3.64 0 0 1 16 12.32V10.6a1.45 1.45 0 0 1 1.43-1.47h7.88V7.08h-14c-1.27 2.86-2.57 5.83-3 7a3.65 3.65 0 0 1-3.37 2.31v1.23a6 6 0 0 0 4.16 1.7h12.58a3.64 3.64 0 0 0 3.63-3.63v-.26a3.45 3.45 0 0 1-1.9.57zm-8.43-2.8a1.24 1.24 0 1 1 1.24-1.2 1.24 1.24 0 0 1-1.24 1.2z" fill="#aabff2"/>
   <path d="M12.83 10.72a1.24 1.24 0 0 0 0 2.48 1.24 1.24 0 0 0 0-2.48z"/>
   <path d="M25.56 9.13h-8.13A1.45 1.45 0 0 0 16 10.6v1.72A3.64 3.64 0 0 0 19.59 16h3.82a3.45 3.45 0 0 0 1.9-.57.53.53 0 0 0 .1-.06 3.69 3.69 0 0 0 1.59-3V10.6a1.46 1.46 0 0 0-1.44-1.47zM22 14.4h-1.61a.61.61 0 1 1 0-1.21H22a.61.61 0 1 1 0 1.21zm2.85 0h-.65a.61.61 0 1 1 0-1.21h.61a.61.61 0 0 1 0 1.21z" fill="#cbdaf7"/>

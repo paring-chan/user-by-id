@@ -8,14 +8,33 @@
       <input v-model="id"/><br/>
       <button v-on:click="submit"/>
     </div>
-    <div class="user" v-if="user">
+    <div v-if="!user"></div>
+    <div class="user" v-else-if="user.code === 200">
         <img v-bind:src="user.data.avatar" class="avatar"/>
-      <h2>
+        <div>
+          <h2>
         {{ user.data.username }}#{{ user.data.discriminator }} <span class="bot" v-if="user.data.bot"><verifiedbot v-if="user.data.badges.includes('VERIFIED_BOT')"/>BOT</span>
       </h2>
+      <discordemployee v-if="user.data.badges.includes('DISCORD_EMPLOYEE')" />
+      <discordpartner v-if="user.data.badges.includes('DISCORD_PARTNER')" />
+      <hypesquadevents v-if="user.data.badges.includes('HYPESQUAD_EVENTS')" />
+      <housebalance v-if="user.data.badges.includes('HOUSE_BALANCE')" />
+      <housebravery v-if="user.data.badges.includes('HOUSE_BRAVERY')" />
+      <housebrilliance v-if="user.data.badges.includes('HOUSE_BRILLIANCE')" />
+      <bughuntersecond v-if="user.data.badges.includes('BUGHUNTER_LEVEL_2')" />
+      <bughunterfirst v-if="user.data.badges.includes('BUGHUNTER_LEVEL_1')" />
+      <verifieddeveloper v-if="user.data.badges.includes('VERIFIED_DEVELOPER')" />
+      <earlysupporter v-if="user.data.badges.includes('EARLY_SUPPORTER')" />
+        </div>
+      </div>
+    <div v-else-if="user.code === 404">
+      존재하지 않는 유저입니다.
+    </div>
+    <div v-else>
+      오류가 발생하였습니다.
     </div>
     </div>
-  </div>
+    </div>
   
 </template>
 
@@ -24,7 +43,9 @@ export default {
   methods: {
     async submit(){
       if(this.id) {
-        this.valid = SnowflakeUtil.deconstruct(this.id).timestamp !== 1420070400000
+        const u = SnowflakeUtil.deconstruct(this.id)
+        this.snowflake = u
+        this.valid =  u.timestamp !== 1420070400000
         this.user = await this.$axios.get(`/api/${this.id}`).then((res)=> {
           return res.data
         })
@@ -186,7 +207,6 @@ class SnowflakeUtil {
 h1, h2, h3, h4, h5, h6 {
   color: white;
   display: block;
-  padding-bottom: 10px;
 }
 
 .user {
@@ -224,6 +244,10 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+svg:not(.verified) {
+  width: 1.5em;
+  height: 1.5em;
+}
 .avatar {
   border-radius: 50%;
   grid-area: 10px;
