@@ -6,7 +6,7 @@
     <h2>ID로 유저 프로필을 조회하세요.</h2>
     <div class="form">
       <input class="id" v-model="id"/><br/>
-      <button v-on:click="submit"/>
+      <button v-on:click="submit">조회</button>
     </div>
     <div v-if="!user"></div>
     <div class="user" v-else-if="user.code === 200">
@@ -247,9 +247,10 @@ input.id {
   height: 3em;
   text-align: center;
   background: #23272A;
-  border: 1px solid black;
+  border: 1px solid rgb(34, 36, 40);
   border-radius: 3px;
   transition: border-color .2s ease-in-out;
+  color: #dcddde
 }
 
 input.id:focus {
@@ -292,5 +293,21 @@ svg:not(.verified) {
   border-radius: 50%;
   grid-area: 10px;
   width: 128px;
+}
+
+button {
+  background: #7289da;
+  color: white;
+  border: 0;
+  border-radius: 3px;
+  outline: none;
+  transition: background-color .17s ease,color .17s ease;
+  padding: 10px 32px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+button:hover {
+  background: #677bc4;
 }
 </style>
