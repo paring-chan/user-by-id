@@ -5,15 +5,16 @@
       <h1>디스코드 유저 조회</h1>
     <h2>ID로 유저 프로필을 조회하세요.</h2>
     <div class="form">
-      <input v-model="id"/><br/>
+      <input class="id" v-model="id"/><br/>
       <button v-on:click="submit"/>
     </div>
     <div v-if="!user"></div>
     <div class="user" v-else-if="user.code === 200">
-        <img v-bind:src="user.data.avatar" class="avatar"/>
+        <div class="grid">
+          <img v-bind:src="user.data.avatar" class="avatar"/>
         <div>
           <h2>
-        {{ user.data.username }}#{{ user.data.discriminator }} <span class="bot" v-if="user.data.bot"><verifiedbot v-if="user.data.badges.includes('VERIFIED_BOT')"/>BOT</span>
+        {{ user.data.username }}#{{ user.data.discriminator }} <span class="bot" v-if="user.data.bot || user.data.badges.includes('SYSTEM') || user.data.badges.includes('TEAM_USER')"><verifiedbot v-if="user.data.badges.includes('VERIFIED_BOT') || user.data.badges.includes('SYSTEM')"/>{{ user.data.badges.includes('SYSTEM') ? "SYSTEM" : user.data.badges.includes('TEAM_USER') ? "TEAMUSER" : "BOT"}}</span>
       </h2>
       <discordemployee v-if="user.data.badges.includes('DISCORD_EMPLOYEE')" />
       <discordpartner v-if="user.data.badges.includes('DISCORD_PARTNER')" />
@@ -27,6 +28,12 @@
       <earlysupporter v-if="user.data.badges.includes('EARLY_SUPPORTER')" />
         </div>
       </div>
+      <h5 class="info">
+          계정생성일:
+          {{ snowflake.date }}<br/>
+          Timestamp: {{ snowflake.timestamp }}
+      </h5>
+        </div>
     <div v-else-if="user.code === 404">
       존재하지 않는 유저입니다.
     </div>
@@ -220,6 +227,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 1.57em;
 }
 
+.info {
+  grid-column: 1/2;
+}
+
 .bot {
   height: 35px !important;
   padding: 0 7px;
@@ -230,6 +241,35 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 10px;
 }
 
+
+input.id {
+  width: calc(100% - 10em);
+  height: 3em;
+  text-align: center;
+  background: #23272A;
+  border: 1px solid black;
+  border-radius: 3px;
+  transition: border-color .2s ease-in-out;
+}
+
+input.id:focus {
+  border: 1px solid #7289da;
+  outline: none;
+}
+
+@media only screen and (min-width: 1200px) {
+  input.id {
+    width: 800px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .user {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 .verified {
   height: 1em;
   width: 1em;
@@ -237,10 +277,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media screen  and (min-width: 768px){
-  .user {
+  .grid {
     display: grid;
     grid-auto-flow: row;
-    grid-template-columns: 10% 90%;
+    grid-template-columns: 15% 85%;
   }
 }
 
